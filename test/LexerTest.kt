@@ -36,8 +36,6 @@ class LexerTest {
                 Pair(TokenType.INT, "10"),
                 Pair(TokenType.SEMICOLON, ";"),
                 Pair(TokenType.LET, "let"),
-                Pair(TokenType.IDENT, "ten"),
-                Pair(TokenType.LET, "let"),
                 Pair(TokenType.IDENT, "add"),
                 Pair(TokenType.ASSIGN, "="),
                 Pair(TokenType.FUNCTION, "fn"),
@@ -52,35 +50,35 @@ class LexerTest {
                 Pair(TokenType.IDENT, "y"),
                 Pair(TokenType.SEMICOLON, ";"),
                 Pair(TokenType.RBRACE, "}"),
-                Pair(TokenType.SEMICOLON, ";"),
-                Pair(TokenType.IF, "if"),
-                Pair(TokenType.LPAREN, "("),
-                Pair(TokenType.INT, "5"),
-                Pair(TokenType.LT, "<"),
-                Pair(TokenType.INT, "10"),
-                Pair(TokenType.RPAREN, ")"),
-                Pair(TokenType.RETURN, "return"),
-                Pair(TokenType.TRUE, "true"),
-                Pair(TokenType.SEMICOLON, ";"),
-                Pair(TokenType.RBRACE, "}"),
-                Pair(TokenType.ELSE, "else"),
-                Pair(TokenType.LBRACE, "{"),
-                Pair(TokenType.RETURN, "return"),
-                Pair(TokenType.FALSE, "false"),
-                Pair(TokenType.SEMICOLON, ";"),
-                Pair(TokenType.RBRACE, "}"),
-                Pair(TokenType.INT, "10"),
-                Pair(TokenType.EQ, "=="),
-                Pair(TokenType.INT, "10"),
-                Pair(TokenType.INT, "10"),
-                Pair(TokenType.NOT_EQ, "!="),
-                Pair(TokenType.INT, "9")
+                Pair(TokenType.SEMICOLON, ";")
+//                Pair(TokenType.IF, "if")
+//                Pair(TokenType.LPAREN, "("),
+//                Pair(TokenType.INT, "5"),
+//                Pair(TokenType.LT, "<"),
+//                Pair(TokenType.INT, "10"),
+//                Pair(TokenType.RPAREN, ")"),
+//                Pair(TokenType.RETURN, "return"),
+//                Pair(TokenType.TRUE, "true"),
+//                Pair(TokenType.SEMICOLON, ";"),
+//                Pair(TokenType.RBRACE, "}"),
+//                Pair(TokenType.ELSE, "else"),
+//                Pair(TokenType.LBRACE, "{"),
+//                Pair(TokenType.RETURN, "return"),
+//                Pair(TokenType.FALSE, "false"),
+//                Pair(TokenType.SEMICOLON, ";"),
+//                Pair(TokenType.RBRACE, "}"),
+//                Pair(TokenType.INT, "10"),
+//                Pair(TokenType.EQ, "=="),
+//                Pair(TokenType.INT, "10"),
+//                Pair(TokenType.INT, "10"),
+//                Pair(TokenType.NOT_EQ, "!="),
+//                Pair(TokenType.INT, "9")
         )
 
         for (expectedToken in expectedTokens) {
             val token = lexer.nextToken()
-//            assertEquals(expectedToken.first, token.type)
-//            assertEquals(expectedToken.second, token.literal)
+            assertEquals(expectedToken.first, token.type)
+            assertEquals(expectedToken.second, token.literal)
         }
     }
 }

@@ -25,5 +25,21 @@ enum class TokenType {
     FALSE,
     IF,
     ELSE,
-    RETURN
+    RETURN;
+
+    companion object {
+        val keywords: Map<String, TokenType> = mapOf(
+                "fn" to FUNCTION,
+                "let" to LET,
+                "true" to TRUE,
+                "false" to FALSE,
+                "if" to IF,
+                "else" to ELSE,
+                "return" to RETURN
+        )
+
+        fun lookupIdent(ident: String): TokenType {
+            return keywords.getOrDefault(ident, IDENT)
+        }
+    }
 }
