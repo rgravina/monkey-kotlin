@@ -8,7 +8,7 @@ The Monkey programming language and an interpreter for it was originally describ
 
 10% [####____________________________________]
 
-- [ ] Lexer
+- [x] Lexer
 - [ ] Parser
 - [ ] Evaluator
 - [ ] Extras

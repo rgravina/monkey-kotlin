@@ -4,15 +4,20 @@ data class Lexer(
         private val input: String,
         private var position: Int = 0,
         private var readPosition: Int = 0,
-        private var character: Char = '0'
+        private var character: Char = Char.MIN_SURROGATE
 ) {
-
     init {
         readChar()
     }
 
+    private val EOF = '~'
+
     private fun readChar() {
-        character = input[readPosition]
+        if (readPosition >= input.length) {
+            character = EOF
+        } else {
+            character = input[readPosition]
+        }
         position = readPosition
         readPosition += 1
     }
@@ -20,10 +25,24 @@ data class Lexer(
     fun nextToken(): Token {
         skipWhitespace()
         val token = when (character) {
-            '=' -> Token(TokenType.ASSIGN, character.toString())
+            '=' -> {
+                if (peekChar() == '=') {
+                    readChar()
+                    Token(TokenType.EQ, "==")
+                } else {
+                    Token(TokenType.ASSIGN, character.toString())
+                }
+            }
             '+' -> Token(TokenType.PLUS, character.toString())
             '-' -> Token(TokenType.MINUS, character.toString())
-            '!' -> Token(TokenType.BANG, character.toString())
+            '!' -> {
+                if (peekChar() == '=') {
+                    readChar()
+                    Token(TokenType.NOT_EQ, "!=")
+                } else {
+                    Token(TokenType.BANG, character.toString())
+                }
+            }
             '/' -> Token(TokenType.SLASH, character.toString())
             '*' -> Token(TokenType.ASTERISK, character.toString())
             '<' -> Token(TokenType.LT, character.toString())
@@ -34,6 +53,7 @@ data class Lexer(
             '}' -> Token(TokenType.RBRACE, character.toString())
             ',' -> Token(TokenType.COMMA, character.toString())
             ';' -> Token(TokenType.SEMICOLON, character.toString())
+            EOF -> Token(TokenType.EOF, "")
             else -> {
                 if (isLetter()) {
                     val ident = readIdentifier()
@@ -47,6 +67,14 @@ data class Lexer(
         }
         readChar()
         return token
+    }
+
+    private fun peekChar(): Char {
+        if (readPosition >= input.length) {
+            return EOF
+        } else {
+            return input[readPosition]
+        }
     }
 
     private fun readNumber(): String {
