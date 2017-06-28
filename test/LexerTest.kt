@@ -99,10 +99,10 @@ class LexerTest {
                 Pair(TokenType.EOF, "")
         )
 
-        for (expectedToken in expectedTokens) {
+        for ((first, second) in expectedTokens) {
             val token = lexer.nextToken()
-            assertEquals(expectedToken.first, token.type)
-            assertEquals(expectedToken.second, token.literal)
+            assertEquals(first, token.type)
+            assertEquals(second, token.literal)
         }
     }
 }

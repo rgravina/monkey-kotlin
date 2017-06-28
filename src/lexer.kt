@@ -6,16 +6,14 @@ data class Lexer(
         private var readPosition: Int = 0,
         private var character: Char = Char.MIN_SURROGATE
 ) {
+    private val EOF = '~'
+
     init {
         readChar()
     }
 
-    private val EOF = '~'
-
     private fun readChar() {
-        if (readPosition >= input.length) {
-            character = EOF
-        } else {
+        if (readPosition >= input.length) character = EOF else {
             character = input[readPosition]
         }
         position = readPosition
