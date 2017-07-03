@@ -1,3 +1,5 @@
+package monkey
+
 data class Token(val type: TokenType, val literal: String)
 
 data class Lexer(

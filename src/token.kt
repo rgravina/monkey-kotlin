@@ -1,3 +1,5 @@
+package monkey
+
 enum class TokenType {
     ILLEGAL,
     EOF,
