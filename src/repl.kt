@@ -16,7 +16,7 @@ data class Repl(
             val lexer = Lexer(line.toString())
             var token = lexer.nextToken()
             while (token.type != TokenType.EOF) {
-                println("${token.type} ${token.literal}")
+                println(token.toString())
                 token = lexer.nextToken()
             }
         }
