@@ -1,9 +1,11 @@
 package monkey
 
 import org.testng.annotations.Test
+import kotlin.test.fail
 
 class ParserTest {
-    @Test fun testLetStatements() {
+    @Test
+    fun testLetStatements() {
         val input = """
 	    let x = 5;
 	    let y = 10;
@@ -12,6 +14,9 @@ class ParserTest {
         val lexer = Lexer(input)
         val parser = Parser(lexer)
 
-        parser.parseProgram()
+        val program = parser.parseProgram()
+        if (program.statements.size != 3) {
+            //fail("program.statements does not contain three statements")
+        }
     }
 }
